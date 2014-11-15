@@ -11,9 +11,7 @@ while True:
 	rand_mat = np.random.rand(8,8)	
 	for y in range(8):
 		for x in range(8):
-#			h = random.random()
-			h = 0.1 * rand_mat[x, y]
-#			h = 0.9
+			h = random.random()
 			s = 1.0
 			v = rand_mat[x, y]
 			rgb = colorsys.hsv_to_rgb(h, s, v)

@@ -15,13 +15,14 @@ def make_gaussian(fwhm, x0, y0):
 	return gauss
 
 while True:
-	x0, y0 = 3.5, 3.5
+	x0 = random.random() * 8
+	y0 = random.random() * 8
+	h = random.random()
 	for z in range(1,5)[::-1] + range(1,10):
 		fwhm = 5/z
 		gauss = make_gaussian(fwhm, x0, y0)
 		for y in range(8):
 			for x in range(8):
-				h = 1.0/(x + y + 1)
 				s = 0.8
 				v = gauss[x,y]
 				rgb = colorsys.hsv_to_rgb(h, s, v)
