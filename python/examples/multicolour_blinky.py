@@ -5,7 +5,7 @@ import time, colorsys
 import numpy as np
 import random
 
-unicorn.brightness(0.5)
+unicorn.brightness(0.4)
 
 while True:
 	rand_mat = np.random.rand(8,8)	
