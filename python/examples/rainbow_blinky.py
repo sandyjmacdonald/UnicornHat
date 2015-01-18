@@ -5,7 +5,7 @@ import time, colorsys
 import numpy as np
 import random
 
-unicorn.brightness(0.5)
+unicorn.brightness(0.4)
 
 def make_gaussian(fwhm, x0, y0):
 	x = np.arange(0, 8, 1, float)
@@ -22,7 +22,7 @@ while True:
 		for y in range(8):
 			for x in range(8):
 				h = 1.0/(x + y + 1)
-				s = 0.8
+				s = 1.0
 				v = gauss[x,y]
 				rgb = colorsys.hsv_to_rgb(h, s, v)
 				r = int(rgb[0]*255.0)
