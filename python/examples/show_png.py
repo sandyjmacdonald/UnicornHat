@@ -3,7 +3,7 @@
 '''
 This basic example shows use of the Python Pillow library:
 
-sudo apt-get install pillow
+sudo pip-3.2 install pillow # or sudo pip install pillow
 
 The tiny 8x8 chars in lofi.png are from Oddball:
 http://forums.tigsource.com/index.php?topic=8834.0
@@ -20,8 +20,8 @@ unicorn.brightness(0.4)
 
 img = Image.open('lofi.png')
 
-for o_x in range(img.size[0]/8):
-	for o_y in range(img.size[1]/8):
+for o_x in range(int(img.size[0]/8)):
+	for o_y in range(int(img.size[1]/8)):
 
 		for x in range(8):
 			for y in range(8):

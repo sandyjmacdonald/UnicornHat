@@ -152,7 +152,7 @@ void * map_peripheral(uint32_t base, uint32_t len) {
 // =================================================================================================
 
 // Set brightness
-unsigned char setBrightness(float b) {
+unsigned char setBrightness(double b) {
 	if(b < 0) {
 		printf("Brightness can't be set below 0.\n");
 		return false;
@@ -163,6 +163,10 @@ unsigned char setBrightness(float b) {
 	}
 	brightness = b;
 	return true;
+}
+
+double getBrightness(){
+	return brightness;
 }
 
 // Zero out the PWM waveform buffer
@@ -767,7 +771,10 @@ void show(void) {
 		//LEDBuffer[i].r *= brightness;
 		//LEDBuffer[i].g *= brightness;
 		//LEDBuffer[i].b *= brightness;
-		colorBits = (ws2812_gamma[(unsigned int)(LEDBuffer[i].r*brightness)] << 8) | (ws2812_gamma[(unsigned int)(LEDBuffer[i].g*brightness)] << 16) | ws2812_gamma[(unsigned int)(LEDBuffer[i].b*brightness)];
+		colorBits =
+		 ((unsigned int)((ws2812_gamma[LEDBuffer[i].r] * brightness) + 0.5) << 8)
+	       | ((unsigned int)((ws2812_gamma[LEDBuffer[i].g] * brightness) + 0.5) << 16)
+	       |  (unsigned int)((ws2812_gamma[LEDBuffer[i].b] * brightness) + 0.5);
 		//printBinary(colorBits, 24);
 		//printf(" (binary, GRB order)\n");
 

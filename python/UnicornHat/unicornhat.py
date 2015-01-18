@@ -64,6 +64,13 @@ def brightness(b = 0.2):
     return
   ws2812.setBrightness(b)
 
+def get_brightness():
+  '''
+  Get the display brightness value
+  Returns a float between 0.0 and 1.0
+  '''
+  return ws2812.getBrightness()
+
 def clear():
   '''
   Clear the buffer
@@ -108,6 +115,27 @@ def set_pixel(x, y, r, g, b):
   index = get_index_from_xy(x, y)
   if index != None:
     ws2812.setPixelColor(index, r, g, b)
+
+def get_pixel(x, y):
+  '''
+  Get the RGB value of a single pixel
+  '''
+  index = get_index_from_xy(x, y)
+  if index != None:
+    pixel = ws2812.getPixelColor(index)
+    return (int(pixel.r), int(pixel.g), int(pixel.b))
+
+def set_pixels(pixels):
+  for x in range(8):
+    for y in range(8):
+      r, g, b = pixels[y][x]
+      set_pixel(x,y,r,g,b)
+
+def get_pixels():
+  '''
+  Get the RGB value of all pixels in a 7x7x3 2d array of tuples
+  '''
+  return [[get_pixel(x,y) for x in range(8)] for y in range(8)]
 
 def show():
   '''
