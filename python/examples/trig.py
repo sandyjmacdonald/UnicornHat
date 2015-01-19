@@ -22,7 +22,7 @@ patterns = ['parallel', 'diagonal', 'crisscross']
 
 while True:
 	for pattern in patterns:
-		for t in range(1, 100):
+		for t in range(100):
 			for y in range(8):
 				for x in range(8):
 					h = 0.1
