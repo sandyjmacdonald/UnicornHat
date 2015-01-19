@@ -7,8 +7,8 @@ import math
 unicorn.brightness(0.5)
 
 def compute_z(x, y, t, pattern):
-	x = x + 1 + t
-	y = y + 1 + t
+	x = x + t
+	y = y + t
 	if pattern == 'parallel':
 		z = math.sin(x) + math.cos(x)
 	elif pattern == 'diagonal':
@@ -22,7 +22,7 @@ patterns = ['parallel', 'diagonal', 'crisscross']
 
 while True:
 	for pattern in patterns:
-		for t in range(1, 50) + range(2, 49)[::-1]:
+		for t in range(1, 100):
 			for y in range(8):
 				for x in range(8):
 					h = 0.1
