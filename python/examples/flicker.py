@@ -5,7 +5,7 @@ import time, colorsys
 import numpy as np
 import random
 
-unicorn.brightness(0.4)
+unicorn.brightness(0.2)
 
 def light(h,s,v):
 	for y in range(8):

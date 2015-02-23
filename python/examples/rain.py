@@ -32,4 +32,4 @@ while True:
 			b = int(rgb[2]*255.0)
 			unicorn.set_pixel(y, x, r, g, b)
 	unicorn.show()
-	time.sleep(0.05)
+	time.sleep(0.075)
