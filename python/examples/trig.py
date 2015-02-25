@@ -11,11 +11,13 @@ def compute_z(x, y, t, pattern):
 	y = y + t
 	if pattern == 'parallel':
 		z = math.sin(x) + math.cos(x)
+		z = (z + 2) / 4
 	elif pattern == 'diagonal':
 		z = math.sin(x + y) + math.cos(x + y)
+		z = (z + 2) / 4
 	elif pattern == 'crisscross':
 		z = math.sin(x) + math.cos(y)
-	z = (z + 2) / 4
+		z = (z + 2) / 4
 	return z
 
 patterns = ['parallel', 'diagonal', 'crisscross']
