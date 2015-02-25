@@ -21,7 +21,7 @@ while True:
 		for x in range(8):
 			h = compute_z(x, y, t)
 			s = 1.0
-			v = 0.3
+			v = 0.4
 			rgb = colorsys.hsv_to_rgb(h, s, v)
 			r = int(rgb[0]*255.0)
 			g = int(rgb[1]*255.0)
