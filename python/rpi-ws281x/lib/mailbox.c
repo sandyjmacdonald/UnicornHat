@@ -74,6 +74,8 @@ void *mapmem(unsigned base, unsigned size)
 
 void *unmapmem(void *addr, unsigned size)
 {
+   unsigned offset = (unsigned)addr % PAGE_SIZE;
+   addr = addr - offset;
    int s = munmap(addr, size);
    if (s != 0) {
       printf("munmap error %d\n", s);
@@ -270,19 +272,26 @@ int mbox_open(void) {
    char filename[64];
 
    // open a char device file used for communicating with kernel mbox driver
-   sprintf(filename, "/tmp/mailbox-%d", getpid());
-   unlink(filename);
-   if (mknod(filename, S_IFCHR|0600, makedev(100, 0)) < 0) {
-      printf("Failed to create mailbox device %s: %m\n", filename);
-      return -1;
-   }
+
+   sprintf(filename, "/dev/vcio");
    file_desc = open(filename, 0);
+
+   if( file_desc < 0 ){
+     printf("Failed to open %s, trying old method.\n", filename);
+     sprintf(filename, "/dev/mailbox-%d", getpid());
+     unlink(filename);
+     if (mknod(filename, S_IFCHR|0600, makedev(100, 0)) < 0) {
+        printf("Failed to create mailbox device %s: %m\n", filename);
+        return -1;
+     }
+     file_desc = open(filename, 0);
+   }
    if (file_desc < 0) {
       printf("Can't open device file %s: %m\n", filename);
-      unlink(filename);
+      //unlink(filename);
       return -1;
    }
-   unlink(filename);
+   //unlink(filename);
 
    return file_desc;
 }
